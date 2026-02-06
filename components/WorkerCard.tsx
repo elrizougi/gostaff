@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Worker, SkillDefinition, Site } from '@/types';
-import { GripVertical, User, Pencil, Trash, X, Check, HardHat, MessageCircle, ChevronDown, MoveRight, UserX, UserCheck, Eye, CalendarClock, ArrowRightLeft } from 'lucide-react';
+import { GripVertical, User, Pencil, Trash, X, Check, HardHat, MessageCircle, ChevronDown, MoveRight, UserX, UserCheck, Eye, CalendarClock, ArrowRightLeft, Briefcase } from 'lucide-react';
 import { daysRemaining, statusClasses, labelFor, calculateDaysWorked } from '@/lib/date';
 import { useAuth } from '@/components/state/AuthContext';
 import { StatusModal } from './StatusModal';
@@ -301,7 +301,7 @@ export function WorkerCardView({
                                     {worker.code}
                                 </span>
                             )}
-                            {user?.role === 'engineer' ? (
+                            {(user?.role as string) === 'engineer' ? (
                                 <span 
                                     className="text-sm font-bold text-gray-900 leading-tight truncate cursor-default"
                                     title={worker.name}
@@ -330,7 +330,7 @@ export function WorkerCardView({
                     </div>
                 ) : (
                     <div className="flex flex-col min-w-0">
-                        {user?.role === 'engineer' ? (
+                        {(user?.role as string) === 'engineer' ? (
                             <span 
                                 className="font-medium text-gray-900 block cursor-default"
                                 title={worker.name}

@@ -11,12 +11,12 @@ import { Search, X, Edit2, Trash2, Phone, Truck, Users, Plus, CheckCircle2, Car,
  export default function DriversPage() {
   const { state: globalState, setState } = useAppState();
   const { user } = useAuth();
-  const isEngineer = user?.role === 'engineer';
+  const isEngineer = (user?.role as string) === 'engineer';
 
   const state = globalState;
 
   // Permission check
-  if (user?.role === 'engineer') {
+  if ((user?.role as string) === 'engineer') {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
             <div className="text-center p-8 bg-white rounded-xl shadow-sm border border-gray-200">
@@ -276,10 +276,10 @@ import { Search, X, Edit2, Trash2, Phone, Truck, Users, Plus, CheckCircle2, Car,
            <div className="flex gap-3 flex-wrap justify-center">
              <Link href="/" className="px-4 py-2.5 border border-gray-300 rounded-xl bg-white hover:bg-gray-50 text-gray-700 font-bold transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 active:scale-95">لوحة التوزيع</Link>
              <Link href="/projects" className="px-4 py-2.5 border border-gray-300 rounded-xl bg-white hover:bg-gray-50 text-gray-700 font-bold transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 active:scale-95">المشاريع</Link>
-             {user?.role !== 'engineer' && (
+             {(user?.role as string) !== 'engineer' && (
                  <Link href="/workers" className="px-4 py-2.5 border border-gray-300 rounded-xl bg-white hover:bg-gray-50 text-gray-700 font-bold transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 active:scale-95">العمال</Link>
              )}
-             {user?.role !== 'viewer' && (
+             {(user?.role as string) !== 'viewer' && (
                <button
                  onClick={() => setIsAdding(v => !v)}
                  className="px-4 py-2.5 bg-primary text-white rounded-xl hover:bg-primary/90 font-bold shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5 active:scale-95"

@@ -15,10 +15,10 @@ export default function WorkersPage() {
   const searchParams = useSearchParams();
   const [search, setSearch] = useState('');
 
-  const isAdmin = user?.role === 'admin';
-  const isSupervisor = user?.role === 'supervisor';
-  const isEngineer = user?.role === 'engineer';
-  const isViewer = user?.role === 'viewer';
+  const isAdmin = (user?.role as string) === 'admin';
+  const isSupervisor = (user?.role as string) === 'supervisor';
+  const isEngineer = (user?.role as string) === 'engineer';
+  const isViewer = (user?.role as string) === 'viewer';
   
   // Permission checks
   const canAdd = isAdmin || isSupervisor;
@@ -465,7 +465,7 @@ export default function WorkersPage() {
     return { total, active, available, absent, topSkill, topSkillCount };
   }, [workers, filterSkill, state.skills]);
 
-  if (user?.role === 'engineer') {
+  if ((user?.role as string) === 'engineer') {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
             <div className="text-center p-8 bg-white rounded-xl shadow-sm border border-gray-200">

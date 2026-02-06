@@ -929,19 +929,19 @@ export default function Dashboard() {
         <div className="flex-1 flex flex-col md:flex-row">
 
           {/* Sidebar - Available - Hidden for Engineers */}
-          {user?.role !== 'engineer' && (
+          {(user?.role as string) !== 'engineer' && (
           <div className="w-full md:w-80 p-3 md:p-4 border-t md:border-t-0 md:border-l bg-white z-0 shrink-0 max-h-[70vh] md:max-h-none md:sticky md:top-[160px] md:h-[calc(100vh-160px)] md:overflow-y-auto transition-all duration-300">
              <AvailableWorkers 
                 workers={activeWorkers.filter(w => !w.assignedSiteId && isWorkerMatch(w))}  
                 skills={state.skills}
-                onAddWorker={user?.role === 'viewer' ? (() => {}) : handleAddWorker}
-                onDeleteWorker={user?.role === 'viewer' ? undefined : handleDeleteWorker}
-                onUpdateWorker={user?.role === 'viewer' ? undefined : handleUpdateWorker}
-                onToggleEngineer={user?.role === 'viewer' ? undefined : handleToggleEngineer}
+                onAddWorker={(user?.role as string) === 'viewer' ? (() => {}) : handleAddWorker}
+                onDeleteWorker={(user?.role as string) === 'viewer' ? undefined : handleDeleteWorker}
+                onUpdateWorker={(user?.role as string) === 'viewer' ? undefined : handleUpdateWorker}
+                onToggleEngineer={(user?.role as string) === 'viewer' ? undefined : handleToggleEngineer}
                 sites={state.sites}
-                onAssign={user?.role === 'viewer' ? undefined : handleAssignWorker}
+                onAssign={(user?.role as string) === 'viewer' ? undefined : handleAssignWorker}
                 searchQuery={searchQuery}
-                onToggleAvailability={user?.role === 'viewer' || user?.role === 'engineer' ? undefined : handleToggleAvailability}
+                onToggleAvailability={(user?.role as string) === 'viewer' || (user?.role as string) === 'engineer' ? undefined : handleToggleAvailability}
                 isMobile={isMobile}
              />
           </div>
@@ -975,13 +975,13 @@ export default function Dashboard() {
                       })} 
                       skills={state.skills}
                        allWorkers={activeWorkers}
-                       onDeleteWorker={user?.role === 'viewer' || user?.role === 'engineer' ? undefined : handleDeleteWorker}
-                       onUpdateWorker={user?.role === 'viewer' || user?.role === 'engineer' ? undefined : handleUpdateWorker}
+                       onDeleteWorker={(user?.role as string) === 'viewer' || (user?.role as string) === 'engineer' ? undefined : handleDeleteWorker}
+                       onUpdateWorker={(user?.role as string) === 'viewer' || (user?.role as string) === 'engineer' ? undefined : handleUpdateWorker}
                        sites={scopedState.sites}
-                       onAssign={user?.role === 'viewer' ? undefined : handleAssignWorker}
-                      onReorder={user?.role === 'viewer' ? undefined : handleReorderSite}
-                      onUpdateSite={user?.role === 'viewer' ? undefined : handleUpdateSite}
-                      onToggleAvailability={user?.role === 'viewer' || user?.role === 'engineer' ? undefined : handleToggleAvailability}
+                       onAssign={(user?.role as string) === 'viewer' ? undefined : handleAssignWorker}
+                      onReorder={(user?.role as string) === 'viewer' ? undefined : handleReorderSite}
+                      onUpdateSite={(user?.role as string) === 'viewer' ? undefined : handleUpdateSite}
+                      onToggleAvailability={(user?.role as string) === 'viewer' || (user?.role as string) === 'engineer' ? undefined : handleToggleAvailability}
                       isMobile={isMobile}
                     />
                    </SortableSite>

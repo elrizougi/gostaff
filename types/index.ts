@@ -48,6 +48,20 @@ export interface Worker {
     notes?: string;
   }>;
   annualLeaveTotal?: number; // Total annual leave days allowed (default 30)
+
+  salaryData?: Record<string, SalaryRecord>;
+}
+
+export interface SalaryRecord {
+  month: string; // YYYY-MM
+  baseSalary: number;
+  deductions: number;
+  bonuses: number;
+  notes?: string;
+  isPaid: boolean;
+  paymentDate?: string;
+  daysWorked?: number;
+  overtimeHours?: number;
 }
 
 export interface Driver {
@@ -78,7 +92,7 @@ export interface AuthUserRecord {
   password: string;
   email?: string;
   status?: 'active' | 'pending';
-  role?: 'admin' | 'engineer' | 'supervisor' | 'viewer';
+  role?: 'admin' | 'engineer' | 'supervisor' | 'viewer'; // User role
   assignedProjectIds?: string[];
 }
 
