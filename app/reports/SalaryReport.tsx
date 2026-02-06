@@ -3,7 +3,7 @@
 import React, { useMemo } from 'react';
 import { Worker } from '@/types';
 import { useAppState } from '@/components/state/AppStateContext';
-import { Wallet } from 'lucide-react';
+import { Wallet, AlertCircle } from 'lucide-react';
 
 
 // Helper to format currency
@@ -20,7 +20,8 @@ export default function SalaryReport({ workers }: SalaryReportProps) {
   const salaryData = state.salaryData || {};
 
   const calculateRow = (workerId: string) => {
-    const data = salaryData[workerId] || {
+    // Cast to any to avoid type errors if types/index.ts is not updated in the build environment
+    const data = (salaryData[workerId] as any) || {
       basicSalary: 0,
       advance: 0,
       advanceRepayment: 0,
@@ -31,12 +32,12 @@ export default function SalaryReport({ workers }: SalaryReportProps) {
       incentives: 0
     };
 
-    const remainingAdvance = Math.max(0, data.advance - data.advanceRepayment);
-    const absenceValue = data.absenceValue;
-    const remainingViolations = Math.max(0, data.violationValue - data.violationRepayment);
+    const remainingAdvance = Math.max(0, (data.advance || 0) - (data.advanceRepayment || 0));
+    const absenceValue = data.absenceValue || 0;
+    const remainingViolations = Math.max(0, (data.violationValue || 0) - (data.violationRepayment || 0));
     
     // Net Salary = Basic + Incentives - Advance Repayment - Absence Value - Violation Repayment
-    const netSalary = Math.max(0, data.basicSalary + data.incentives - data.advanceRepayment - absenceValue - data.violationRepayment);
+    const netSalary = Math.max(0, (data.basicSalary || 0) + (data.incentives || 0) - (data.advanceRepayment || 0) - absenceValue - (data.violationRepayment || 0));
 
     return {
       ...data,

@@ -528,7 +528,7 @@ export default function ProfessionalDashboard() {
 
         // Create a new workbook
         const wb = utils.book_new();
-        const ws = utils.json_to_sheet([], { origin: "A5" }); // Start data from row 5
+        const ws = utils.json_to_sheet([], { origin: "A5" } as any); // Start data from row 5
 
         // Add Header Info
         const headerData = [
@@ -641,7 +641,7 @@ export default function ProfessionalDashboard() {
         });
 
         const wb = utils.book_new();
-        const ws = utils.json_to_sheet([], { origin: "A5" });
+        const ws = utils.json_to_sheet([], { origin: "A5" } as any);
 
         const headerData = [
             ["تقرير سجل الإجازات"],

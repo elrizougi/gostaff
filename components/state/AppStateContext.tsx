@@ -7,7 +7,7 @@ const AppStateContext = createContext<{
   state: AppState;
   setState: React.Dispatch<React.SetStateAction<AppState>>;
   updateWorkerStatus: (workerId: string, status: 'available' | 'absent' | 'rest' | 'waiting') => void;
-  markWorkerAbsent: (workerId: string, date: string, creator: string, days?: number) => void;
+  // markWorkerAbsent removed as it is not implemented
   recordAbsence: (workerId: string, date: string, reason?: string, recordedBy?: string) => void;
   cancelAbsence: (workerId: string) => void;
   deleteAbsence: (workerId: string, date: string) => void;
