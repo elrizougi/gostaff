@@ -3,12 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -H 0.0.0.0",
-    "lint": "next lint",
-    "go-live": "docker build -t musabhassan2026/mygostaffapdocker:latest . && docker push musabhassan2026/mygostaffapdocker:latest",
-    "deploy": "docker build -t musabhassan2026/mygostaffapdocker:latest . && docker push musabhassan2026/mygostaffapdocker:latest"
+    "start": "nod .next/standalone/server.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
