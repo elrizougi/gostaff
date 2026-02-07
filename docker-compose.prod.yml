@@ -19,8 +19,8 @@ services:
       # Hostname for Next.js in Docker
       - HOSTNAME=0.0.0.0
     # Load environment variables from .env file if present
-    env_file:
-      - .env.local
+    # env_file:
+    #   - .env.local
     networks:
       - dokploy-network
     labels:
